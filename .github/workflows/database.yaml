@@ -22,9 +22,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Instalar Liquibase
-        uses: liquibase/setup-liquibase@v1
+        uses: liquibase/setup-liquibase@v3
         with:
-          version: latest
+          version: '5.0.3'
+          edition: 'community'
+      - run: liquibase --version
       
       - name: Liquibase validate
         run: liquibase validate
