@@ -1,0 +1,33 @@
+name: Database CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/database/**"
+  pull_request:
+    paths:
+      - "src/database/**"
+
+jobs:
+  validate:
+    name: Validação Liquibase
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src/database
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalar Liquibase
+        uses: liquibase/setup-liquibase@v1
+        with:
+          version: latest
+      
+      - name: Liquibase validate
+        run: liquibase validate
+      
+      - name: Liquibase updateSQL
+        run: liquibase update-sql
