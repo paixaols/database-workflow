@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Instalar Liquibase
         uses: liquibase/setup-liquibase@v3
@@ -29,7 +29,8 @@ jobs:
           version: '5.0.3'
           edition: 'community'
 
-      - run: liquibase --version
+      - name: Validar instalação
+        run: liquibase --version
 
       # - run: liquibase validate
 
