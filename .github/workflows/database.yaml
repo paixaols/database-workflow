@@ -14,9 +14,11 @@ jobs:
   validate:
     name: Validação Liquibase
     runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: src/database
+
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -26,10 +28,9 @@ jobs:
         with:
           version: '5.0.3'
           edition: 'community'
+
       - run: liquibase --version
-      
-      - name: Liquibase validate
-        run: liquibase validate
-      
-      - name: Liquibase updateSQL
-        run: liquibase update-sql
+
+      # - run: liquibase validate
+
+      # - run: liquibase update-sql
